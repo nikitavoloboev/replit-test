@@ -54,11 +54,11 @@ async def main():
     y = jnp.sum(x ** 2, axis=1, keepdims=True)
     
     # Initialize network
-    layer_sizes = [2, 32, 32, 1]
+    layer_sizes = [2, 64, 64, 32, 1]
     params = init_network_params(layer_sizes, model_key)
     
     # Setup optimizer
-    optimizer = optax.adam(learning_rate=0.01)
+    optimizer = optax.adam(learning_rate=0.005)
     optimizer_state = optimizer.init(params)
     
     # Training loop
