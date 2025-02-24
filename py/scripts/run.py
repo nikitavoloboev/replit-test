@@ -2,8 +2,7 @@
 import jax
 import jax.numpy as jnp
 from functools import partial
-from jax import random, grad
-from jax.jit import jit
+from jax import random, grad, jit
 import optax
 
 
