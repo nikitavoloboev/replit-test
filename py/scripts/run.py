@@ -1,7 +1,9 @@
 
 import jax
 import jax.numpy as jnp
-from jax import random, grad, jit
+from functools import partial
+from jax import random, grad
+from jax.jit import jit
 import optax
 
 
@@ -35,7 +37,7 @@ def loss_fn(params, x, y):
     return jnp.mean((pred - y) ** 2)
 
 
-@jit(static_argnames=('optimizer',))
+@partial(jit, static_argnames=['optimizer'])
 def update(params, x, y, optimizer_state, optimizer):
     """Perform one optimization step."""
     loss, grads = jax.value_and_grad(loss_fn)(params, x, y)
